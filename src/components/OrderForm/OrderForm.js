@@ -10,10 +10,10 @@ function OrderForm({ addOrder }) {
     const newOrder = {
       id: Date.now(),
       name,
-      ingredients
-    }
+      ingredients,
+    };
 
-    addOrder(newOrder)
+    addOrder(newOrder);
     clearInputs();
   }
 
@@ -21,6 +21,12 @@ function OrderForm({ addOrder }) {
     setName("");
     setIngredients([]);
   };
+
+  const addIngredient = (ingredient) => {
+    if (!ingredients.includes(ingredient)) {
+      setIngredients([...ingredients, ingredient]);
+    }
+  }
 
   const possibleIngredients = [
     "beans",
@@ -42,7 +48,7 @@ function OrderForm({ addOrder }) {
       <button
         key={ingredient}
         name={ingredient}
-        onClick={(e) => handleSubmit(e)}
+        onClick={() => addIngredient(ingredient)}
       >
         {ingredient}
       </button>
@@ -50,20 +56,20 @@ function OrderForm({ addOrder }) {
   });
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Name"
         name="name"
         value={name}
-        onChange={(e) => setName(e)}
+        onChange={(e) => setName(e.target.value)}
       />
 
       {ingredientButtons}
 
       <p>Order: {ingredients.join(", ") || "Nothing selected"}</p>
 
-      <button onClick={(e) => handleSubmit(e)}>Submit Order</button>
+      <button type="submit">Submit Order</button>
     </form>
   );
 }
