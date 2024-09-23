@@ -43,8 +43,6 @@ describe("order-spec", () => {
       fixture: 'newOrder'
     }).as('POSTorder');
 
-    // cy.visit('http://localhost:3000/');
-
     cy.get('input').type('Carissa');
     cy.get('[name="beans"]').click();
     cy.get('[name="lettuce"]').click();

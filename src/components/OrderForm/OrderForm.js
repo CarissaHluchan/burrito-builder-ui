@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './OrderForm.css'
 
 function OrderForm({ addOrder }) {
   const [name, setName] = useState("");
@@ -70,8 +71,9 @@ function OrderForm({ addOrder }) {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-
-      {ingredientButtons}
+      <div className="ingredient-buttons-wrapper">
+        {ingredientButtons}
+      </div>
 
       <p>Order: {ingredients.join(", ") || "Nothing selected"}</p>
 

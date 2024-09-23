@@ -1,0 +1,20 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+button, input {
+    font-weight: 900;
+    font-size: 1rem;
+    padding: .5rem;
+    width: 10rem;
+    margin: .25rem;
+}
+
+.ingredient-buttons-wrapper {
+    box-sizing: border-box;
+    padding: 10px;
+}
