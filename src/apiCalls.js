@@ -12,7 +12,6 @@ export const getOrders = () => {
     })
     .catch(err => {
       console.log(err, "ERR IN GET");
-      throw err; 
     });
 };
 
