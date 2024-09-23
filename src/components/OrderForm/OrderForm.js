@@ -7,6 +7,11 @@ function OrderForm({ addOrder }) {
   function handleSubmit(e) {
     e.preventDefault();
 
+    if (!name || ingredients.length === 0) {
+      alert("Please enter a name and select at least one ingredient.");
+      return;
+    }
+
     const newOrder = {
       id: Date.now(),
       name,
@@ -23,7 +28,7 @@ function OrderForm({ addOrder }) {
   };
 
   const addIngredient = (ingredient) => {
-    if (!ingredients.includes(ingredient)) {
+    if (name && !ingredients.includes(ingredient)) {
       setIngredients([...ingredients, ingredient]);
     }
   }
@@ -46,6 +51,7 @@ function OrderForm({ addOrder }) {
   const ingredientButtons = possibleIngredients.map((ingredient) => {
     return (
       <button
+        type="button"
         key={ingredient}
         name={ingredient}
         onClick={() => addIngredient(ingredient)}
@@ -69,7 +75,7 @@ function OrderForm({ addOrder }) {
 
       <p>Order: {ingredients.join(", ") || "Nothing selected"}</p>
 
-      <button type="submit">Submit Order</button>
+      <button type="submit" disabled={!name && !ingredients.length}>Submit Order</button>
     </form>
   );
 }
