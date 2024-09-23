@@ -1,18 +1,19 @@
 export const getOrders = () => {
   return fetch("http://localhost:3001/api/v1/orders")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("there is an Error getting the order")
-    }
-    return response.json()
-  })
-  .then( orderData => {
-    console.log(orderData, "GET ORDER DATA")
-    return orderData
-  })
-  .catch(err => {
-    console.log(err, "ERR IN GET")
-  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("There is an error getting the orders");
+      }
+      return response.json();
+    })
+    .then(orderData => {
+      console.log(orderData.orders, "GET ORDER DATA"); 
+      return orderData.orders;
+    })
+    .catch(err => {
+      console.log(err, "ERR IN GET");
+      throw err; 
+    });
 };
 
 export const postOrders = (newOrder) => {

@@ -8,18 +8,22 @@ import OrderForm from "../../components/OrderForm/OrderForm";
 function App() {
 
   const [orders, setOrders] = useState([]);
+  const [error, setError] = useState('')
 
   useEffect(() => {
     getOrders()
     .then(orderData => {
       console.log(orderData, "order data in useEffect")
       if (orderData && orderData.length) {
-        setOrders(orderData)
+        setOrders(orderData);
       } else {
-        setOrders([])
+        setOrders([]);
       }
     })
-    .catch((err) => console.error("Error fetching:", err));
+    .catch((err) => {
+      console.error("Error fetching:", err)
+      setError('There was an error loading the orders')
+    });
   }, []);
 
   const addOrder = (newOrder) => {
@@ -31,6 +35,7 @@ function App() {
     })
     .catch(err => {
       console.log(err , "err in addIdea")
+      setError('There was an error adding your order')
     })
   }
 
@@ -38,6 +43,7 @@ function App() {
     <main className="App">
       <header>
         <h1>Burrito Builder</h1>
+        {error && <p className="error-message">{error}</p>}
         <OrderForm addOrder={addOrder}/>
       </header>
 

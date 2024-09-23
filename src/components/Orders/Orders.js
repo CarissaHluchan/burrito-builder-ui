@@ -1,6 +1,5 @@
 import React from "react";
 import "./Orders.css";
-// import OrderElms from "../OrderElms/OrderElms";
 
 const Orders = ({ orders }) => {
   const orderEls = orders.map((order) => {
@@ -19,7 +18,6 @@ const Orders = ({ orders }) => {
   return (
     <section>
       {orderEls.length ? orderEls : <p>No orders yet!</p>}
-      {/* <OrderElms orders={orders} /> */}
     </section>
   );
 };
